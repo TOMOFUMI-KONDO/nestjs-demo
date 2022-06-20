@@ -11,8 +11,14 @@ export class AppController {
   }
 
   @Get('/engine')
-  async engine(@Param() params) {
-    const res = await this.appService.engine(params.msg);
+  async engine() {
+    const res = await this.appService.engine();
+    return { result: res };
+  }
+
+  @Get('/engine/echo')
+  async engineEcho(@Param() params) {
+    const res = await this.appService.engineEcho(params.msg);
     return { result: res };
   }
 }

@@ -19,9 +19,14 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async engine(msg: string) {
+  async engine() {
+    const res = await this.httpService.get(this.engineUrl).toPromise();
+    return res.data;
+  }
+
+  async engineEcho(msg: string) {
     const res = await this.httpService
-      .get(this.engineUrl, { params: { msg } })
+      .get(`${this.engineUrl}/echo`, { params: { msg } })
       .toPromise();
     return res.data;
   }
