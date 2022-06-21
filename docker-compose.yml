@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: nestjs-demo-app
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: root
+      DB_DB: webtts
+      ENGINE_HOST: localhost
+      ENGINE_PORT: 8000
+  web:
+    build: nginx
+    image: nestjs-demo-web
+    ports:
+      - "80:80"
+    environment:
+      APP_HOST: app
+  mysql:
+    image: mysql:8.0.29-oracle
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
