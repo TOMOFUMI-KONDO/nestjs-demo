@@ -10,6 +10,11 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @Get('/health')
+  health(): string {
+    return this.appService.health();
+  }
+
   @Get('/engine')
   async engine() {
     const res = await this.appService.engine();

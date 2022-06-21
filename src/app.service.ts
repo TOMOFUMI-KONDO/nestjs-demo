@@ -19,6 +19,10 @@ export class AppService {
     return 'Hello World!';
   }
 
+  health(): string {
+    return 'ok';
+  }
+
   async engine() {
     const res = await this.httpService.get(this.engineUrl).toPromise();
     return res.data;
